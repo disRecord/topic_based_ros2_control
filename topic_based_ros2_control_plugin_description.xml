@@ -1,9 +1,15 @@
 <library path="topic_based_ros2_control">
 
-<class name="topic_based_ros2_control/TopicBasedSystem" type="topic_based_ros2_control::TopicBasedSystem" base_class_type="hardware_interface::SystemInterface">
-    <description>
-        A topic based ros2_control hardware interface.
-    </description>
-  </class>
+	<class name="topic_based_ros2_control/TopicBasedSystem" type="topic_based_ros2_control::TopicBasedSystem" base_class_type="hardware_interface::SystemInterface">
+		<description>
+			A topic based ros2_control hardware interface.
+		</description>
+	</class>
+
+	<class name="topic_based_ros2_control/TopicBasedPlanarMoveBaseSystem" type="topic_based_ros2_control::TopicBasedPlanarMoveBaseSystem" base_class_type="hardware_interface::SystemInterface">
+		<description>
+			A topic based ros2_control hardware interface for controlling planar mobile robot via Twist messages.
+		</description>
+	</class>
 
 </library>

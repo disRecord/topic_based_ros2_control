@@ -12,7 +12,12 @@ set(THIS_PACKAGE_INCLUDE_DEPENDS
   angles
   rclcpp
   hardware_interface
-  sensor_msgs
+  tf2
+  tf2_ros
+  tf2_geometry_msgs
+  geometry_msgs
+  nav_msgs
+  tf2_msgs
 )
 
 find_package(ament_cmake REQUIRED)
@@ -28,6 +33,7 @@ endforeach()
 add_library(
   ${PROJECT_NAME}
   src/topic_based_system.cpp
+  src/topic_based_planar_move_base_system.cpp
 )
 ament_target_dependencies(${PROJECT_NAME} ${THIS_PACKAGE_INCLUDE_DEPENDS})
 target_include_directories(${PROJECT_NAME}
@@ -68,6 +74,11 @@ if(BUILD_TESTING)
   target_link_libraries(topic_based_system_test
     ${PROJECT_NAME})
   ament_target_dependencies(topic_based_system_test ${THIS_PACKAGE_INCLUDE_DEPENDS} ros2_control_test_assets)
+
+  ament_add_gtest(topic_based_planar_move_base_system_test test/topic_based_planar_move_base_system_test.cpp)
+  target_link_libraries(topic_based_planar_move_base_system_test
+    ${PROJECT_NAME})
+  ament_target_dependencies(topic_based_planar_move_base_system_test ${THIS_PACKAGE_INCLUDE_DEPENDS})
 endif()
 
 pluginlib_export_plugin_description_file(hardware_interface topic_based_ros2_control_plugin_description.xml)
